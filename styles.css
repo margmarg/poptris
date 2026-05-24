@@ -1,0 +1,264 @@
+/* Pop-art Tetris — bold outlines, saturated palette, halftone */
+
+:root {
+  --ink: #0d0d12;
+  --paper: #fff8f0;
+  --pink: #ff2d95;
+  --cyan: #00d4ff;
+  --yellow: #ffe600;
+  --lime: #b8ff00;
+  --orange: #ff6b35;
+  --violet: #9d4edd;
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-sm: 4px 4px 0 var(--ink);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Fredoka", system-ui, sans-serif;
+  background: linear-gradient(135deg, #ff9ec5 0%, #7ee8fa 50%, #eec0fd 100%);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.halftone-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.title-bar {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.logo {
+  font-family: "Bungee", cursive;
+  font-size: clamp(2.5rem, 8vw, 3.75rem);
+  margin: 0;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-shadow: 4px 4px 0 var(--yellow), 8px 8px 0 var(--pink);
+  line-height: 1.1;
+}
+
+.logo-accent {
+  color: var(--cyan);
+  text-shadow: 4px 4px 0 var(--ink), 8px 8px 0 var(--lime);
+}
+
+.tagline {
+  margin: 0.5rem 0 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.game-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 140px;
+}
+
+.stat-card,
+.next-card,
+.controls-card {
+  background: var(--paper);
+  border: 4px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 0.75rem 1rem;
+}
+
+.stat-label,
+.next-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-family: "Bungee", cursive;
+  font-size: 1.75rem;
+  color: var(--pink);
+  text-shadow: 2px 2px 0 var(--cyan);
+}
+
+.next-card {
+  text-align: center;
+}
+
+#next {
+  display: block;
+  margin: 0.5rem auto 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.playfield-wrap {
+  position: relative;
+  border: 6px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--shadow), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+  background: var(--ink);
+}
+
+#game {
+  display: block;
+  vertical-align: top;
+  width: min(90vw, 320px);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 13, 18, 0.82);
+  border-radius: 2px;
+  backdrop-filter: blur(2px);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-card {
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  max-width: 280px;
+}
+
+.overlay-card h2 {
+  font-family: "Bungee", cursive;
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  color: var(--ink);
+}
+
+.overlay-msg {
+  margin: 0 0 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-pop {
+  font-family: "Bungee", cursive;
+  font-size: 1rem;
+  padding: 0.65rem 1.75rem;
+  border: 4px solid var(--ink);
+  border-radius: 999px;
+  background: var(--cyan);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.btn-pop:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+.btn-pop:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.controls-title {
+  font-family: "Bungee", cursive;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.controls-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.controls-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+kbd {
+  font-family: "Fredoka", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--lime);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+@media (max-width: 700px) {
+  .panel-left,
+  .panel-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    min-width: unset;
+  }
+
+  .stat-card {
+    flex: 1;
+    min-width: 90px;
+  }
+}

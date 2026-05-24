@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pop Tetris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="halftone-bg" aria-hidden="true"></div>
+  <div class="app">
+    <header class="title-bar">
+      <h1 class="logo">POP<span class="logo-accent">TRIS</span></h1>
+      <p class="tagline">Stack · Clear · Repeat</p>
+    </header>
+
+    <main class="game-layout">
+      <aside class="panel panel-left">
+        <div class="stat-card">
+          <span class="stat-label">Score</span>
+          <span id="score" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Level</span>
+          <span id="level" class="stat-value">1</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Lines</span>
+          <span id="lines" class="stat-value">0</span>
+        </div>
+      </aside>
+
+      <div class="playfield-wrap">
+        <canvas id="game" width="320" height="640" aria-label="Tetris playfield"></canvas>
+        <div id="overlay" class="overlay hidden">
+          <div class="overlay-card">
+            <h2 id="overlay-title">Paused</h2>
+            <p id="overlay-msg" class="overlay-msg">Press P to resume</p>
+            <button type="button" id="btn-start" class="btn-pop">Start</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel panel-right">
+        <div class="next-card">
+          <span class="next-label">Next</span>
+          <canvas id="next" width="120" height="120" aria-label="Next piece preview"></canvas>
+        </div>
+        <div class="controls-card">
+          <h3 class="controls-title">Keys</h3>
+          <ul class="controls-list">
+            <li><kbd>←</kbd><kbd>→</kbd> Move</li>
+            <li><kbd>↑</kbd> Rotate</li>
+            <li><kbd>↓</kbd> Soft drop</li>
+            <li><kbd>Space</kbd> Hard drop</li>
+            <li><kbd>P</kbd> Pause</li>
+            <li><kbd>M</kbd> Mute</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
